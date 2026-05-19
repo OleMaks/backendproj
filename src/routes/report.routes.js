@@ -14,18 +14,18 @@ const reportController = require('../controllers/report.controller');
  *         schema:
  *           type: string
  *         required: true
- *         description: Початкова дата (2026-01-01)
+ *         description: Початкова дата (наприклад, 2026-01-01)
  *       - in: query
  *         name: to
  *         schema:
  *           type: string
  *         required: true
- *         description: Кінцева дата (2026-05-31)
+ *         description: Кінцева дата (наприклад, 2026-05-31)
  *     responses:
  *       200:
  *         description: Успішно згенеровано звіт.
  *       400:
- *         Відсутні обовʼязкові параметри дат.
+ *         description: Відсутні обовʼязкові параметри дат.
  */
 router.get('/', reportController.getPeriodReport);
 
