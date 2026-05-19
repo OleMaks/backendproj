@@ -1,17 +1,14 @@
-// src/controllers/category.controller.js
+const db = require('../config/db'); // Adjust path if your db.js is located elsewhere
 
-const mockCategories = [
-    { id: 1, name: 'Продукти' },
-    { id: 2, name: 'Комунальні послуги' },
-    { id: 3, name: 'Транспорт' },
-    { id: 4, name: 'Зарплата' }
-];
-
-const getAllCategories = (req, res) => {
-    // после бд подключить
-    // const categories = await CategoryService.getAll();
-
-    res.status(200).json(mockCategories);
+const getAllCategories = async (req, res) => {
+    try {
+        // Fetch all categories from the database
+        const [rows] = await db.execute('SELECT id, name FROM categories');
+        res.status(200).json(rows);
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };
 
 module.exports = {
