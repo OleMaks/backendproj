@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const reportController = require('../controllers/report.controller');
+const verifyToken = require('../middlewares/auth.middleware');
 
 /**
  * @swagger
@@ -27,6 +28,6 @@ const reportController = require('../controllers/report.controller');
  *       '400':
  *         description: Відсутні обовʼязкові параметри дат.
  */
-router.get('/', reportController.getPeriodReport);
+router.get('/', verifyToken, reportController.getPeriodReport);
 
 module.exports = router;
