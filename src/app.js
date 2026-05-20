@@ -18,7 +18,6 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -26,12 +25,11 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/categories', categoryRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/reports', reportRoutes);
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req, res) => {
   res.send('Сервер безпечний та працює!');
