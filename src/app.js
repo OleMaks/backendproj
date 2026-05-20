@@ -20,9 +20,9 @@ app.use(express.json());
 
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    message: { message: 'Забагато запитів з цього IP, спробуйте пізніше.' }
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { message: 'Забагато запитів з цього IP, спробуйте пізніше.' }
 });
 app.use('/api/', limiter);
 
@@ -34,11 +34,11 @@ app.use('/api/reports', reportRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req, res) => {
-    res.send('Сервер безпечний та працює!');
+  res.send('Сервер безпечний та працює!');
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Сервер безпечно запущено на порту ${PORT}`);
-    console.log(`http://localhost:${PORT}/api-docs`);
+  console.log(`Сервер безпечно запущено на порту ${PORT}`);
+  console.log(`http://localhost:${PORT}/api-docs`);
 });
