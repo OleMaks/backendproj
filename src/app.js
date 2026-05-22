@@ -13,6 +13,9 @@ const transactionRoutes = require('./routes/transaction.routes');
 const reportRoutes = require('./routes/report.routes');
 const authRoutes = require('./routes/auth.routes');
 
+
+const errorHandler = require('./middlewares/error.middleware');
+
 const app = express();
 
 app.use(helmet());
@@ -36,6 +39,9 @@ app.use('/api/reports', reportRoutes);
 app.get('/', (req, res) => {
     res.send('Сервер безпечний та працює!');
 });
+
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
