@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const reportController = require('../controllers/report.controller');
 const verifyToken = require('../middlewares/auth.middleware');
+const validate = require('../middlewares/validate.middleware');
+const { reportQuerySchema } = require('../validators/finance.validator');
 
 /**
  * @swagger
@@ -28,6 +30,6 @@ const verifyToken = require('../middlewares/auth.middleware');
  *       '400':
  *         description: Відсутні обовʼязкові параметри дат.
  */
-router.get('/', verifyToken, reportController.getPeriodReport);
+router.get('/', validate(reportQuerySchema, 'query'), verifyToken, reportController.getPeriodReport);
 
 module.exports = router;

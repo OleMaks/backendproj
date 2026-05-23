@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const transactionController = require('../controllers/transaction.controller');
+const validate = require('../middlewares/validate.middleware');
+const { createTransactionSchema } = require('../validators/finance.validator');
 
 /**
  * @swagger
@@ -39,6 +41,6 @@ const transactionController = require('../controllers/transaction.controller');
  *         description: Некоректні вхідні дані.
  */
 router.get('/', transactionController.getTransactions);
-router.post('/', transactionController.createTransaction);
+router.post('/', validate(createTransactionSchema), transactionController.createTransaction);
 
 module.exports = router;
