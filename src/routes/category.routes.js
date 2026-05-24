@@ -12,6 +12,6 @@ const categoryController = require('../controllers/category.controller');
  *       200:
  *         description: Успішне отримання списку категорій.
  */
-router.get('/', categoryController.getAllCategories);
+router.get('/', categoryController.getCategories);
 
 module.exports = router;
